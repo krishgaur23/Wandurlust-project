@@ -53,6 +53,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 
+const PORT = process.env.PORT || 8080;
 
 const store=MongoStore.create({
   mongoUrl:dbUrl,
@@ -139,6 +140,6 @@ app.use((err, req, res, next) => {
 
 // ------------------- SERVER -------------------
 
-app.listen(8080, () => {
-  console.log("Server running on port 8080");
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
