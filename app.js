@@ -1,5 +1,5 @@
 // app.js
-if(process.env.NODE_ENV !="production"){
+if(process.env.NODE_ENV !=="production"){
     require('dotenv').config();
 }
 
@@ -29,6 +29,8 @@ const User = require("./models/user.js");
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+
+
 
 // const MONGO_URL = "mongodb://127.0.0.1:27017/Wanderlust";
 const dbUrl=process.env.ATLASDB_URL;
@@ -142,6 +144,16 @@ app.use((err, req, res, next) => {
 
 // ------------------- SERVER -------------------
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// ---------------- DATABASE CONNECT + SERVER START ----------------
+async function main() {
+  try {
+    await mongoose.connect(dbUrl);
+    console.log("Connected to DB");
+
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  } catch (err) {
+    console.error("DB Connection Error:", err);
+  }
+}
+
+main();
