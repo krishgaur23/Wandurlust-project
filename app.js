@@ -58,19 +58,21 @@ const PORT = process.env.PORT || 8080;
 const store=MongoStore.create({
   mongoUrl:dbUrl,
   crypto:{
-    secret:"process.env.SECRET",
+    secret: process.env.SECRET,
+
 
   },  
   touchAfter:24*3600,
 });
 
-store.on("error",()=>{
+store.on("error",(err)=>{
   console.log("ERROR IN MONGO SESSION STORE",err);
 });
 
 const sessionOptions = {
   store,
-  secret: "process.env.SECRET",
+  secret: process.env.SECRET,
+
   resave: false,
   saveUninitialized: false,
   cookie: {
