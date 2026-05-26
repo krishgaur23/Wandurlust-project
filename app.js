@@ -37,13 +37,13 @@ const dbUrl=process.env.ATLASDB_URL;
 
 // ---------------- DATABASE ----------------
 
-main()
-  .then(() => console.log("Connected to DB"))
-  .catch((err) => console.log(err));
+// main()
+//   .then(() => console.log("Connected to DB"))
+//   .catch((err) => console.log(err));
 
-async function main() {
-  await mongoose.connect(dbUrl);
-}
+// async function main() {
+//   await mongoose.connect(dbUrl);
+// }
 
 // ---------------- APP CONFIG ----------------
 
